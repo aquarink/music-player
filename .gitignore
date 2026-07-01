@@ -1,0 +1,12 @@
+# Compiled binaries
+music-player
+*.dSYM/
+*.o
+*.out
+
+# Logs
+myeasylog.log
+logs/
+
+# OS-specific
+.DS_Store
