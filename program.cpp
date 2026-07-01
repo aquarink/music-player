@@ -1,6 +1,8 @@
 #include "splashkit.h"
 #include <string>
 #include <vector>
+#include <algorithm>
+#include <cctype>
 
 using std::string;
 using std::vector;
@@ -72,12 +74,59 @@ int read_integer(string prompt, int min, int max)
     }
 }
 
+// Utility Helpers
+string clean_path(string path)
+{
+    // Remove shell escape backslashes (e.g. "\ " becomes " ")
+    string result = "";
+    for (size_t i = 0; i < path.length(); i++)
+    {
+        if (path[i] == '\\' && i + 1 < path.length())
+        {
+            result += path[i + 1];
+            i++;
+        }
+        else
+        {
+            result += path[i];
+        }
+    }
+    
+    // Strip trailing or leading spaces
+    if (!result.empty() && result.front() == ' ')
+    {
+        result.erase(result.begin());
+    }
+    if (!result.empty() && result.back() == ' ')
+    {
+        result.pop_back();
+    }
+
+    // If path is absolute or relative pointing to Resources/sounds/, strip it to filename
+    size_t sounds_pos = result.find("Resources/sounds/");
+    if (sounds_pos != string::npos)
+    {
+        result = result.substr(sounds_pos + 17); // Strip up to "Resources/sounds/"
+    }
+    else
+    {
+        size_t sounds_pos_short = result.find("sounds/");
+        if (sounds_pos_short != string::npos)
+        {
+            result = result.substr(sounds_pos_short + 7); // Strip up to "sounds/"
+        }
+    }
+    
+    return result;
+}
+
 // Function Declarations/Definitions
 void add_song(music_player_data &player)
 {
     write_line("\n--- Add a New Song ---");
     string name = read_string("Enter song name: ");
-    string path = read_string("Enter path to file: ");
+    string raw_path = read_string("Enter path to file: ");
+    string path = clean_path(raw_path);
     bool loved = read_boolean("Is the song loved? (y/n): ");
 
     song_data new_song;
@@ -114,8 +163,8 @@ int search_and_select_song(const music_player_data &player)
     vector<int> matches;
     for (int i = 0; i < player.songs.size(); i++)
     {
-        // Use SplashKit contains function to match name
-        if (contains(player.songs[i].name, search_term))
+        // Use SplashKit contains function to match name case-insensitively
+        if (contains(to_lowercase(player.songs[i].name), to_lowercase(search_term)))
         {
             matches.push_back(i);
         }
