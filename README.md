@@ -74,7 +74,9 @@ Saat program berjalan, Anda akan dihadapkan pada menu konsol interaktif:
 
 1. **Add a new song**:
    - Masukkan nama lagu (misal: `Sample Song`).
-   - Masukkan nama file lagu yang berada di folder `Resources/sounds/` (misal: `sample.mp3`).
+   - Masukkan path/nama file lagu:
+     - **Cara yang direkomendasikan**: Letakkan terlebih dahulu file audio Anda di folder `Resources/sounds/`, lalu Anda cukup memasukkan **nama file-nya saja** (misal: `sample.mp3`).
+     - **Cara alternatif**: Anda juga bisa menyalin (*copy-paste*) path absolut file (misal: `/Volumes/SSD 850/PROJECTS/music-player/Resources/sounds/sample.mp3` atau path dengan backslash escape dari terminal). Program otomatis akan membersihkannya sehingga SplashKit tetap dapat membaca file tersebut dengan benar.
    - Tentukan status favorit/loved (`y` atau `n`).
 2. **Play a song**:
    - Cari lagu dengan memasukkan potongan nama lagu.
