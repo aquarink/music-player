@@ -90,3 +90,79 @@ Saat program berjalan, Anda akan dihadapkan pada menu konsol interaktif:
    - Menampilkan statistik umum pemutar musik (jumlah lagu, total pemutaran, dan total lagu loved).
 6. **Quit**:
    - Keluar dari program dan membersihkan memori/resource SplashKit.
+
+---
+
+## 📝 Contoh Penggunaan (Sample Usage)
+
+Berikut adalah contoh log interaksi saat menjalankan program:
+
+```text
+pebri@Pebris-MacBook-Pro-2012 music-player % ./music-player
+
+=============================
+===   MUSIC PLAYER MENU   ===
+=============================
+1. Add a new song
+2. Update a song
+3. Play a song
+4. Pause / Resume song
+5. Print status
+6. Quit
+=============================
+Select an option (1-6): 1
+
+--- Add a New Song ---
+Enter song name: Stay 
+Enter path to file: Stay.mp3
+Is the song loved? (y/n): y
+Loading song into SplashKit as song-0 from: Stay.mp3
+Song added successfully with ID: song-0
+
+=============================
+===   MUSIC PLAYER MENU   ===
+=============================
+1. Add a new song
+2. Update a song
+3. Play a song
+4. Pause / Resume song
+5. Print status
+6. Quit
+=============================
+Select an option (1-6): 3
+
+--- Play a Song ---
+Enter search term (name to search for): Stay
+
+Matching songs:
+1: Stay (song-0) - Played: 0 times [Loved]
+Enter the number of the song you want: 1
+Playing song: Stay (song-0)...
+
+=============================
+===   MUSIC PLAYER MENU   ===
+=============================
+1. Add a new song
+2. Update a song
+3. Play a song
+4. Pause / Resume song
+5. Print status
+6. Quit
+=============================
+Select an option (1-6): 4
+
+--- Pause / Resume Song ---
+Music has been paused.
+
+=============================
+===   MUSIC PLAYER MENU   ===
+=============================
+1. Add a new song
+2. Update a song
+3. Play a song
+4. Pause / Resume song
+5. Print status
+6. Quit
+=============================
+Select an option (1-6): 
+```
